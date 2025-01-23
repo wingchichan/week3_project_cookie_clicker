@@ -18,6 +18,7 @@ cookieButton.addEventListener("click", function () {
   cookieDisplay.innerText = totalCookies;
 });
 
+// creating the header and p tag for the cps bit and appending the relevant values to display
 const cpsHeader = document.createElement("h3");
 const cps = document.createElement("p");
 cps.setAttribute("id", "cps");
@@ -25,3 +26,9 @@ document.body.appendChild(cpsHeader);
 document.body.appendChild(cps);
 cpsHeader.innerText = "Cookies Added per Second";
 cps.innerText = cookies;
+
+// make totalCookies increment every second
+const timerInterval = setInterval(function () {
+  totalCookies += 1;
+  cookieDisplay.innerText = totalCookies;
+}, 1000);
