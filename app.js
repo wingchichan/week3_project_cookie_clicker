@@ -16,6 +16,7 @@ cookieButton.addEventListener("click", function () {
   totalCookies += 1;
   // within the pTag we want to show the number of cookies i.e. the global cookie variable
   cookieDisplay.innerText = totalCookies;
+  localStorage.setItem("totalCookies", totalCookies);
 });
 
 // creating the header and p tag for the cps bit and appending the relevant values to display
@@ -31,4 +32,5 @@ cps.innerText = cookies;
 const timerInterval = setInterval(function () {
   totalCookies += 1;
   cookieDisplay.innerText = totalCookies;
+  localStorage.setItem("totalCookies", totalCookies);
 }, 1000);
