@@ -34,3 +34,33 @@ const timerInterval = setInterval(function () {
   cookieDisplay.innerText = totalCookies;
   localStorage.setItem("totalCookies", totalCookies);
 }, 1000);
+
+async function fetchData() {
+  const data = await fetch(
+    "https://cookie-upgrade-api.vercel.app/api/upgrades"
+  );
+  // api data is read in json
+  // jvsdata now holds the meaningful data that we want
+  const jvsdata = await data.json();
+  // can see the data we want in the console
+  //   console.log(jvsdata);
+
+  // we want to display the jvsdata on screen which is an array
+  for (let i = 0; i < jvsdata.length; i++) {
+    // creating p tag
+    const shopItemName = document.createElement("p");
+    // appending p tag into DOM
+    document.body.appendChild(shopItemName);
+    // populating the p tag
+    shopItemName.innerText = jvsdata[i].name;
+
+    const shopItemCost = document.createElement("p");
+    document.body.appendChild(shopItemCost);
+    shopItemCost.innerText = jvsdata[i].cost;
+
+    const increaseCookiesBy = document.createElement("p");
+    document.body.appendChild(increaseCookiesBy);
+    increaseCookiesBy.innerText = jvsdata[i].increase;
+  }
+}
+fetchData();
