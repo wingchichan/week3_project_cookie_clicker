@@ -1,4 +1,4 @@
-let totalCookies = 0;
+let totalCookies = 500;
 let cookies = 1;
 
 // creating h2 and p tag elements and storing it into a variable
@@ -29,11 +29,11 @@ cpsHeader.innerText = "Cookies Added per Second";
 cps.innerText = cookies;
 
 // make totalCookies increment every second
-const timerInterval = setInterval(function () {
-  totalCookies += 1;
-  cookieDisplay.innerText = totalCookies;
-  localStorage.setItem("totalCookies", totalCookies);
-}, 1000);
+// const timerInterval = setInterval(function () {
+//   totalCookies += 1;
+//   cookieDisplay.innerText = totalCookies;
+//   localStorage.setItem("totalCookies", totalCookies);
+// }, 1000);
 
 async function fetchData() {
   const data = await fetch(
@@ -47,6 +47,15 @@ async function fetchData() {
 
   // we want to display the jvsdata on screen which is an array
   for (let i = 0; i < jvsdata.length; i++) {
+    const buyButton = document.createElement("button");
+    document.body.appendChild(buyButton);
+    buyButton.innerText = "Buy";
+    buyButton.addEventListener("click", function () {
+      totalCookies = totalCookies - jvsdata[i].cost;
+      cookieDisplay.innerText = totalCookies;
+      cookies = cookies + jvsdata[i].increase;
+      cps.innerText = cookies;
+    });
     // creating p tag
     const shopItemName = document.createElement("p");
     // appending p tag into DOM
