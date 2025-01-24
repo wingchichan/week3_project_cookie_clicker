@@ -1,37 +1,18 @@
 let totalCookies = 5000;
 let cookies = 1;
 
-const cookieDisplay = document.createElement("p");
-cookieDisplay.setAttribute("id", "totalNumber");
-const cps = document.createElement("p");
-cps.setAttribute("id", "cpsNumber");
+const cookieDisplay = document.getElementById("totalNumber");
 
-function createHeader() {
-  // creating h2 and p tag elements and storing it into a variable
-  const totalHeader = document.createElement("h2");
+const cps = document.getElementById("cpsNumber");
 
-  // appending the h2 and p tag variables to the DOM/ body
-
-  totalHeader.innerText = "Cookie Jar";
+function initHeader() {
   cookieDisplay.innerText = totalCookies;
 
-  // creating the h3 and p tag for the cps bit and appending the relevant values to display
-  const cpsHeader = document.createElement("h3");
-
-  cpsHeader.innerText = "Cookies Added per Second";
   cps.innerText = cookies;
-
-  // appending the above inside a container
-  const headerContainer = document.createElement("header");
-  headerContainer.appendChild(totalHeader);
-  headerContainer.appendChild(cookieDisplay);
-  headerContainer.appendChild(cpsHeader);
-  headerContainer.appendChild(cps);
 
   const cookieButton = document.getElementById("cookieButton");
   cookieButton.addEventListener("click", function () {
     totalCookies += 1;
-    // within the pTag we want to show the number of cookies i.e. the global cookie variable
     cookieDisplay.innerText = totalCookies;
     localStorage.setItem("totalCookies", totalCookies);
   });
@@ -42,8 +23,6 @@ function createHeader() {
     cookieDisplay.innerText = totalCookies;
     localStorage.setItem("totalCookies", totalCookies);
   }, 1000);
-
-  return headerContainer;
 }
 
 async function fetchData() {
@@ -60,13 +39,13 @@ async function fetchData() {
   displayShop(jvsdata);
 }
 function startGame() {
+  initHeader();
   fetchData();
 }
 
 startGame();
 
-const shopContainer = document.createElement("section");
-shopContainer.setAttribute("id", "shopContainer");
+const shopContainer = document.getElementById("shopContainer");
 
 //   we want to display the jvsdata on screen which is an array. need to pass in an argument in the function so the function knows there's data
 function displayShop(shopProduct) {
@@ -101,10 +80,3 @@ function displayShop(shopProduct) {
     shopContainer.appendChild(productDiv);
   }
 }
-
-const mainContainer = document.createElement("main");
-const headerContainer = createHeader();
-mainContainer.appendChild(headerContainer);
-mainContainer.appendChild(cookieButton);
-mainContainer.appendChild(shopContainer);
-document.body.appendChild(mainContainer);
