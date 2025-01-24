@@ -1,28 +1,36 @@
-let totalCookies = 5000;
+let totalCookies = 0;
 let cookies = 1;
 
 const cookieDisplay = document.getElementById("totalNumber");
 
 const cps = document.getElementById("cpsNumber");
 
-function initHeader() {
+function setup() {
+  const existingTotalCookies = localStorage.getItem("totalCookies");
+  if (existingTotalCookies != null) {
+    totalCookies = +existingTotalCookies;
+  }
+
   cookieDisplay.innerText = totalCookies;
+
+  const existingCPScookies = localStorage.getItem("cookies");
+  if (existingCPScookies != null) {
+    cookies = +existingCPScookies;
+  }
 
   cps.innerText = cookies;
 
   const cookieButton = document.getElementById("cookieButton");
-  cookieButton.addEventListener("click", function () {
-    totalCookies += 1;
-    cookieDisplay.innerText = totalCookies;
-    localStorage.setItem("totalCookies", totalCookies);
-  });
+  cookieButton.addEventListener("click", addCPStoTotal);
 
   // make totalCookies increment every second
-  const timerInterval = setInterval(function () {
-    totalCookies += cookies;
-    cookieDisplay.innerText = totalCookies;
-    localStorage.setItem("totalCookies", totalCookies);
-  }, 1000);
+  const timerInterval = setInterval(addCPStoTotal, 1000);
+}
+
+function addCPStoTotal() {
+  totalCookies += cookies;
+  cookieDisplay.innerText = totalCookies;
+  localStorage.setItem("totalCookies", totalCookies);
 }
 
 async function fetchData() {
@@ -39,7 +47,7 @@ async function fetchData() {
   displayShop(jvsdata);
 }
 function startGame() {
-  initHeader();
+  setup();
   fetchData();
 }
 
@@ -60,6 +68,7 @@ function displayShop(shopProduct) {
       totalCookies = totalCookies - shopProduct[i].cost;
       cookieDisplay.innerText = totalCookies;
       cookies = cookies + shopProduct[i].increase;
+      localStorage.setItem("cookies", cookies);
       cps.innerText = cookies;
     });
     // creating p tag
