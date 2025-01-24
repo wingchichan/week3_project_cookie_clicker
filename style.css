@@ -29,6 +29,14 @@ h3 {
 #shopContainer {
   background-color: brown;
   width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.product {
+  padding: 10px;
+  background-color: aquamarine;
 }
 
 body {

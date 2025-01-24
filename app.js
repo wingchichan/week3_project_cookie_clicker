@@ -71,10 +71,12 @@ shopContainer.setAttribute("id", "shopContainer");
 //   we want to display the jvsdata on screen which is an array. need to pass in an argument in the function so the function knows there's data
 function displayShop(shopProduct) {
   for (let i = 0; i < shopProduct.length; i++) {
+    const productDiv = document.createElement("div");
+    productDiv.setAttribute("class", "product");
     const buyButton = document.createElement("button");
     buyButton.innerText = "Buy";
     // appending the element inside the shopContainer
-    shopContainer.appendChild(buyButton);
+    productDiv.appendChild(buyButton);
     buyButton.addEventListener("click", function () {
       totalCookies = totalCookies - shopProduct[i].cost;
       cookieDisplay.innerText = totalCookies;
@@ -84,17 +86,19 @@ function displayShop(shopProduct) {
     // creating p tag
     const shopItemName = document.createElement("p");
     // appending p tag into DOM
-    shopContainer.appendChild(shopItemName);
+    productDiv.appendChild(shopItemName);
     // populating the p tag
     shopItemName.innerText = shopProduct[i].name;
 
     const shopItemCost = document.createElement("p");
-    shopContainer.appendChild(shopItemCost);
+    productDiv.appendChild(shopItemCost);
     shopItemCost.innerText = shopProduct[i].cost;
 
     const increaseCookiesBy = document.createElement("p");
-    shopContainer.appendChild(increaseCookiesBy);
+    productDiv.appendChild(increaseCookiesBy);
     increaseCookiesBy.innerText = shopProduct[i].increase;
+
+    shopContainer.appendChild(productDiv);
   }
 }
 
