@@ -2,7 +2,9 @@ let totalCookies = 5000;
 let cookies = 1;
 
 const cookieDisplay = document.createElement("p");
+cookieDisplay.setAttribute("id", "totalNumber");
 const cps = document.createElement("p");
+cps.setAttribute("id", "cpsNumber");
 
 function createHeader() {
   // creating h2 and p tag elements and storing it into a variable
@@ -99,5 +101,6 @@ function displayShop(shopProduct) {
 const mainContainer = document.createElement("main");
 const headerContainer = createHeader();
 mainContainer.appendChild(headerContainer);
+mainContainer.appendChild(cookieButton);
 mainContainer.appendChild(shopContainer);
 document.body.appendChild(mainContainer);
