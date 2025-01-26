@@ -10,14 +10,12 @@ function setup() {
   if (existingTotalCookies != null) {
     totalCookies = +existingTotalCookies;
   }
-
   cookieDisplay.innerText = totalCookies;
 
   const existingCPScookies = localStorage.getItem("cookies");
   if (existingCPScookies != null) {
     cookies = +existingCPScookies;
   }
-
   cps.innerText = cookies;
 
   const cookieButton = document.getElementById("cookieButton");
@@ -65,11 +63,15 @@ function displayShop(shopProduct) {
     // appending the element inside the shopContainer
     productDiv.appendChild(buyButton);
     buyButton.addEventListener("click", function () {
-      totalCookies = totalCookies - shopProduct[i].cost;
-      cookieDisplay.innerText = totalCookies;
-      cookies = cookies + shopProduct[i].increase;
-      localStorage.setItem("cookies", cookies);
-      cps.innerText = cookies;
+      if (totalCookies < shopProduct[i].cost) {
+        alert("You don't have enough cookies!");
+      } else {
+        totalCookies = totalCookies - shopProduct[i].cost;
+        cookieDisplay.innerText = totalCookies;
+        cookies = cookies + shopProduct[i].increase;
+        localStorage.setItem("cookies", cookies);
+        cps.innerText = cookies;
+      }
     });
     // creating p tag
     const shopItemName = document.createElement("p");
@@ -83,9 +85,23 @@ function displayShop(shopProduct) {
     shopItemCost.innerText = shopProduct[i].cost;
 
     const increaseCookiesBy = document.createElement("p");
+
     productDiv.appendChild(increaseCookiesBy);
     increaseCookiesBy.innerText = shopProduct[i].increase;
+    productDiv.appendChild(buyButton);
 
     shopContainer.appendChild(productDiv);
   }
 }
+
+// function resetGame() {
+//   totalCookies = 0;
+//   cookieDisplay.innerText = totalCookies;
+//   cookies = 0;
+//   cps.innerText = cookies;
+//   localStorage.setItem("totalCookies", totalCookies);
+//   localStorage.setItem("cookies", cookies);
+// }
+
+// const resetGame = document.getElementById("reset");
+// resetGame.addEventListener("click", resetGame);
