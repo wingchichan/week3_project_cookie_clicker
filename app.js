@@ -2,7 +2,6 @@ let totalCookies = 0;
 let cookies = 1;
 
 const cookieDisplay = document.getElementById("totalNumber");
-
 const cps = document.getElementById("cpsNumber");
 
 function setup() {
@@ -44,12 +43,6 @@ async function fetchData() {
   // we have given this function an argument of the data above so when we call it below the function knows it needs to look for that data, regardless of what we call it below.
   displayShop(jvsdata);
 }
-function startGame() {
-  setup();
-  fetchData();
-}
-
-startGame();
 
 const shopContainer = document.getElementById("shopContainer");
 
@@ -105,3 +98,10 @@ function resetGame() {
 
 const resetButton = document.getElementById("reset");
 resetButton.addEventListener("click", resetGame);
+
+function startGame() {
+  setup();
+  fetchData();
+}
+
+startGame();
