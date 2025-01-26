@@ -94,14 +94,14 @@ function displayShop(shopProduct) {
   }
 }
 
-// function resetGame() {
-//   totalCookies = 0;
-//   cookieDisplay.innerText = totalCookies;
-//   cookies = 0;
-//   cps.innerText = cookies;
-//   localStorage.setItem("totalCookies", totalCookies);
-//   localStorage.setItem("cookies", cookies);
-// }
+function resetGame() {
+  totalCookies = 0;
+  cookieDisplay.innerText = totalCookies;
+  cookies = 1;
+  cps.innerText = cookies;
+  localStorage.removeItem("totalCookies");
+  localStorage.removeItem("cookies");
+}
 
-// const resetGame = document.getElementById("reset");
-// resetGame.addEventListener("click", resetGame);
+const resetButton = document.getElementById("reset");
+resetButton.addEventListener("click", resetGame);
