@@ -57,7 +57,7 @@ function displayShop(shopProduct) {
     productDiv.appendChild(buyButton);
     buyButton.addEventListener("click", function () {
       if (totalCookies < shopProduct[i].cost) {
-        alert("You don't have enough cookies!");
+        alert("You don't have enough cookies - keep clicking!!!");
       } else {
         totalCookies = totalCookies - shopProduct[i].cost;
         cookieDisplay.innerText = totalCookies;
